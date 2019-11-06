@@ -6,7 +6,7 @@
 ## Modules
 
 ### 1. User statistics module - Arvin Jason Aquino, Aldrin Ken Ong
-⋅⋅*   Monitors monthly user figures (entering the main doors of the library)
+..*   Monitors monthly user figures (entering the main doors of the library)
 
 ### 2. Noise level response module
 ⋅⋅*   Monitors the noise level in a reading room and delivers a warning above threshold.

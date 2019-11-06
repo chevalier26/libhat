@@ -16,7 +16,7 @@
 #     Triggers light fixtures to maintain a comfortable reading level in response to changes in natural lighting.
 #     Monitors light levels for preservation planning. Delivers a warning when exceeding set threshold.
 
-#   Shock sensing
+#   Shock sensing (Kyle & Lea)
 #     Monitors occasional shocks and tremors for preservation planning, such as users bumping into bookshelves or a large book being slammed.
 #     Triggers an evacuation alarm or duck-cover-hold warning upon detection of continuous shocks.
 

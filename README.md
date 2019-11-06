@@ -25,5 +25,5 @@ The code is meant for a Raspberry Pi and interfaces with external sensors using 
    * Monitors occasional shocks and tremors for preservation planning, such as users bumping into bookshelves or a large book being slammed.
    *  Triggers an evacuation alarm or duck-cover-hold warning upon detection of continuous shocks.
 
-####   3.4. Smoke detection - irisB., ltj., mcotiong
-   *  Triggers an alarm upon detection of smoke.
+####   3.4. Gas detection - irisB., ltj., mcotiong
+   *  Triggers an alarm upon detection of high concentrations of specific gases.

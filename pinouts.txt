@@ -2,3 +2,7 @@ Pin Allocations for Each Module Team
 
 User Statistics Module
   GPIO 17 27 22
+=======
+
+Temperature and Humidity Monitor
+GPIO 9

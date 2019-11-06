@@ -9,7 +9,7 @@
 #   Monitors the noise level in a reading room and delivers a warning above threshold.
 
 # Environmental monitoring modules
-#   Temperature and Humidity monitor
+#   Temperature and Humidity monitor - Dustin & Winston
 #     Monitors temperature and humidity for preservation planning. Delivers a warning when exceeding set threshold.
 
 #   Light level monitor - Marven Manzano

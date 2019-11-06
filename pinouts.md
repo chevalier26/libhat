@@ -20,6 +20,10 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses th
   
   
 ###  Shock sensing
-  
-  
+    GPIO 5
+    GPIO 6
+    GPIO 13
+    GPIO 19
+    GPIO 26
+
 ###  Gas detection

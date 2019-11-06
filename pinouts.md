@@ -1,7 +1,6 @@
 # Pin Allocations for Each Module Team
 
-Refer to https://pinout.xyz/pinout/wiringpi for arrangement
-Project uses the Broadcom pin numbering
+Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses the Broadcom pin numbering.
 
 ## User Statistics Module
     GPIO 17 

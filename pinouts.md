@@ -4,9 +4,9 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement
 Project uses the Broadcom pin numbering
 
 ## User Statistics Module
-  GPIO 17 
-  GPIO 27
-  GPIO 22
+    GPIO 17 
+    GPIO 27
+    GPIO 22
   
 ## Noise Level Response Module
 

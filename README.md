@@ -12,7 +12,7 @@
 #   Temperature and Humidity monitor
 #     Monitors temperature and humidity for preservation planning. Delivers a warning when exceeding set threshold.
 
-#   Light level monitor
+#   Light level monitor - Marven Manzano
 #     Triggers light fixtures to maintain a comfortable reading level in response to changes in natural lighting.
 #     Monitors light levels for preservation planning. Delivers a warning when exceeding set threshold.
 

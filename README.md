@@ -6,10 +6,10 @@
 ## Modules
 
 ### 1. User statistics module - Arvin Jason Aquino, Aldrin Ken Ong
-..*   Monitors monthly user figures (entering the main doors of the library)
+   *Monitors monthly user figures (entering the main doors of the library)
 
 ### 2. Noise level response module
-⋅⋅*   Monitors the noise level in a reading room and delivers a warning above threshold.
+   *Monitors the noise level in a reading room and delivers a warning above threshold.
 
 ### 3. Environmental monitoring modules
 ####   3.1. Temperature and Humidity monitor - Dustin & Winston

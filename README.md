@@ -10,7 +10,7 @@ The code is meant for a Raspberry Pi and interfaces with external sensors using 
 ### 1. User statistics module - Arvin Jason Aquino, Aldrin Ken Ong
    * Monitors monthly user figures (entering the main doors of the library)
 
-### 2. Noise level response module
+### 2. Noise level response module - Joshua
    * Monitors the noise level in a reading room and delivers a warning above threshold.
 
 ### 3. Environmental monitoring modules

@@ -27,3 +27,6 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses th
     GPIO 26
 
 ###  Gas detection
+    GPIO 25
+    GPIO 08
+    GPIO 07

@@ -17,7 +17,7 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses th
     GPIO 9
 
 ###  Light Level Monitor
-  
+    GPIO 23
   
 ###  Shock sensing
     GPIO 5

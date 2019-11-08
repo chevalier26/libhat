@@ -8,7 +8,7 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses th
     GPIO 22
   
 ## Noise Level Response Module
-
+    GPIO 24
 
 
 ## Environmental Monitoring Modules

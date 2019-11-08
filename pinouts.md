@@ -3,7 +3,6 @@
 Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses the Broadcom pin numbering.
 
 ## User Statistics Module
-    GPIO 17 
     GPIO 27
     GPIO 22
   
@@ -14,7 +13,7 @@ Refer to https://pinout.xyz/pinout/wiringpi for arrangement. The project uses th
 ## Environmental Monitoring Modules
   
 ###  Temperature and Humidity Monitor 
-    GPIO 9
+    GPIO 17 - DHT 11 Digital Temperature and Humidity sensor
 
 ###  Light Level Monitor
     

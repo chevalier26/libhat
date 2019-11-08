@@ -21,8 +21,24 @@ SPI_PORT   = 0
 SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
-print('Press Ctrl-C to quit...')
+print('Reading MCP3008 values, press Ctrl-C to quit...')
+# Print nice channel column headers.
+print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*range(8)))
+print('-' * 57)
+# Main program loop.
 while True:
+    # Read all the ADC channel values in a list.
+    values = [0]*8
+    for i in range(8):
+        # The read_adc function will get the value of the specified channel (0-7).
+        values[i] = mcp.read_adc(i)
+    # Print the ADC values.
+    print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+    # Pause for half a second.
+    time.sleep(0.5)
+
+# print('Press Ctrl-C to quit...')
+# while True:
     # Grab the difference between channel 0 and 1 (i.e. channel 0 minus 1).
     # Note you can specify any value in 0-7 to grab other differences:
     #  - 0: Return channel 0 minus channel 1
@@ -33,6 +49,6 @@ while True:
     #  - 5: Return channel 5 minus channel 4
     #  - 6: Return channel 6 minus channel 7
     #  - 7: Return channel 7 minus channel 6
-    value = mcp.read_adc_difference(0)
-    print('Channel 0 minus 1: {0}'.format(value))
-    time.sleep(0.5)
+#    value = mcp.read_adc_difference(0)
+#    print('Channel 0 minus 1: {0}'.format(value))
+#    time.sleep(0.5)

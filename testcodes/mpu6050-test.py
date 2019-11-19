@@ -17,7 +17,7 @@ ACCEL_ZOUT_H = 0x3F
 GYRO_XOUT_H  = 0x43
 GYRO_YOUT_H  = 0x45
 GYRO_ZOUT_H  = 0x47
-
+TEMP_OUT     = 0x41
 
 def MPU_Init():
 	#write to sample rate register
@@ -76,7 +76,11 @@ while True:
 	Gx = gyro_x/131.0
 	Gy = gyro_y/131.0
 	Gz = gyro_z/131.0
+
+        #Temperature raw value
+	temp_raw = read_raw_data(TEMP_OUT)
+	tempC = (temp_raw / 340.0) + 36.53
 	
 
-	print ("Gx=%.2f" %Gx, + "deg/s , Gy=%.2f" %Gy, + "deg/s , Gz=%.2f" %Gz, + "deg/s , Ax=%.2f g" %Ax, + "Ay=%.2f g" %Ay, + "Az=%.2f g" %Az) 	
+	print ("Gx=%.3f deg/s | " %Gx + "Gy=%.3f deg/s | " %Gy + "Gz=%.3f deg/s || " %Gz + "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g" %Az + "|| Temp: %.2f degC" %tempC) 	
 	sleep(1)

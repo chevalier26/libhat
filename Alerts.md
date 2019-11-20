@@ -7,10 +7,11 @@ NOISE: continuous yellow light for 2 seconds
 LIGHT (low): green light blinking at 0.5 second interval
 
 
-HIGH TEMPERATURE (23C): continuous orange light
-LOW TEMPERATURE (13C): continuous blue light
-HIGH HUMIDITY (60%): blinking orange light
+HIGH TEMPERATURE (23C): blinking orange light with sound
+LOW TEMPERATURE (13C): blinking orange light
+HIGH HUMIDITY (60%): blinking blue light sound
 LOW HUMIDITY (35%): blinking blue light
+[all blinks are 1 second]
 
 
 USER STATISTICS:

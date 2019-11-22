@@ -59,8 +59,8 @@ def readtemphumid():
 	#connecting the database
 	mydb = mysql.connector.connect(
 	  host="localhost",
-	  user="yourusername",
-	  passwd="yourpassword"
+	  user="pi",
+	  passwd="raspberry"
 	)
 
 	mycursor = mydb.cursor()

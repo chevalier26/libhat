@@ -72,8 +72,10 @@ def readtemphumid():
 	current_datetime = datetime.datetime.now().strftime("%c")
 
 
-	sql = "INSERT INTO temp_humid(datetime1, temp, humid, sensor_id) VALUES (%s, %s, %s)"
+	sql = "INSERT INTO temp_humid(datetime1, temp, humid, sensor_id) VALUES (%s, %s, %s, %s)"
 	val = (current_datetime, temp, humid, 001)
+	print val;
+	print sql;
 	mycursor.execute(sql, val)
 
 	mydb.commit()

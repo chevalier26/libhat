@@ -1,3 +1,3 @@
-import temphummod
+from temphummod import readtemphumid
 
 readtemphumid()

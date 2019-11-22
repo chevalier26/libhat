@@ -43,16 +43,17 @@ def readtemphumid():
 			temp_string = lines[1][equals_pos+2:]
 			temp_c = float(temp_string) / 1000.0
 			return temp_c
-
+	humid_dht11, temp_dht11 = Adafruit_DHT.read_retry(sensor,gpio)
 	while abs((temp_dht11-read_temp())) > 0.5:
-		if humidity is None and temperature is None:
+		if humid_dht11 is None and temp_dht11 is None:
 			print('Failed to get temperature/humidity reading. Possible hardware problem!')
 			break
 		humid_dht11, temp_dht11 = Adafruit_DHT.read_retry(sensor, gpio)
 		
 	humid=humid_dht11
 	temp=temp_dht11
-
+	print humid
+	print temp
 	#-----------------------------------------------------------------------------------------------------#
 
 
@@ -60,22 +61,24 @@ def readtemphumid():
 	mydb = mysql.connector.connect(
 	  host="localhost",
 	  user="pi",
-	  passwd="raspberry"
+	  passwd="raspberry",
+	  database="libhat"
 	)
-
+	print "connected"
 	mycursor = mydb.cursor()
 
 	#database structure of temp and humid
 	#mycursor.execute("CREATE TABLE temp_humid(id INT(4), time1 DATETIME, temp INT(4), humid INT(4))")
 
 	import datetime
-	current_datetime = datetime.datetime.now().strftime("%c")
+	current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-
-	sql = "INSERT INTO temp_humid(datetime1, temp, humid, sensor_id) VALUES (%s, %s, %s, %s)"
-	val = (current_datetime, temp, humid, 001)
+	sql = "INSERT INTO temp_humid(datetime1, temp, humid, sensor_id) VALUES (%s,%s,%s,%s)"
+	sensor_id=001
+	val = (current_datetime, temp, humid, sensor_id)
 	print val;
 	print sql;
 	mycursor.execute(sql, val)
 
 	mydb.commit()
+	print(mycursor.rowcount, "record inserted")

@@ -1,0 +1,3 @@
+import temphummod
+
+readtemphumid()

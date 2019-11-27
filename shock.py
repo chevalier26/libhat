@@ -1,6 +1,7 @@
 def seismometer():
     import smbus			#import SMBus module of I2C
     from time import sleep          #import
+    import RPi.GPIO as GPIO
 
     #some MPU6050 Registers and their Address
     PWR_MGMT_1   = 0x6B
@@ -15,6 +16,11 @@ def seismometer():
     GYRO_YOUT_H  = 0x45
     GYRO_ZOUT_H  = 0x47
     TEMP_OUT     = 0x41
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(13, GPIO.OUT)
+    GPIO.setup(5, GPIO.OUT)
+
 
     def MPU_Init():
         #write to sample rate register
@@ -71,8 +77,12 @@ def seismometer():
 
         if (diff >= 0.092 ):
             print('strong earthquake')
+            GPIO.output(13, GPIO.HIGH)
+            GPIO.output(5, GPIO.HIGH)
+
         elif (diff >= 0.039):
             print('weak earthquake')
+            GPIO.output(13, GPIO.HIGH)
 
         print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g" %Az) 	
         sleep(0.2)

@@ -101,7 +101,7 @@ def seismometer():
 	#mycursor.execute("CREATE TABLE shock(id INT(4), datetime1 DATETIME, ax FLOAT(5,3), ay FLOAT(5,3), az FLOAT(5,3), ar FLOAT(5,3))")
 
     current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    sql = "INSERT INTO shock(id, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s)"
+    sql = "INSERT INTO shock(id, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
 	sensor_id=001
 	val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
 	mycursor.execute(sql, val)

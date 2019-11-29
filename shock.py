@@ -93,7 +93,7 @@ def seismometer():
     elif (diff >= 0.039):
         print('weak earthquake')
         GPIO.output(13, GPIO.HIGH)
-    else
+    else:
         GPIO.output(13, GPIO.LOW)
         GPIO.output(5, GPIO.LOW)
 

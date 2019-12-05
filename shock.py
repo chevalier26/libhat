@@ -2,6 +2,8 @@ def seismometer():
     import smbus			#import SMBus module of I2C
     from time import sleep          #import
     import RPi.GPIO as GPIO
+    import mysql.connector
+    import datetime
 
     #some MPU6050 Registers and their Address
     PWR_MGMT_1   = 0x6B
@@ -57,35 +59,52 @@ def seismometer():
 
     MPU_Init()
 
+    #connecting the database
+	mydb = mysql.connector.connect(
+	  host="localhost",
+	  user="pi",
+	  passwd="raspberry",
+	  database="libhat"
+	)
+	print "connected"
+	mycursor = mydb.cursor()
+
+   
+
     print (" Reading Data of Gyroscope and Accelerometer")
 
-    while True:
+
         
-        #Read Accelerometer raw value
-        acc_x = read_raw_data(ACCEL_XOUT_H)
-        acc_y = read_raw_data(ACCEL_YOUT_H)
-        acc_z = read_raw_data(ACCEL_ZOUT_H)
+    #Read Accelerometer raw value
+    acc_x = read_raw_data(ACCEL_XOUT_H)
+    acc_y = read_raw_data(ACCEL_YOUT_H)
+    acc_z = read_raw_data(ACCEL_ZOUT_H)
+    
+    #Full scale range +/- 250 degree/C as per sensitivity scale factor
+    Ax = acc_x/16384.0
+    Ay = acc_y/16384.0
+    Az = acc_z/16384.0
+    Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
+    diff = math.fabs(1.025 - Ar)
+    if (diff >= 0.092 ):
+        print('strong earthquake')
+        GPIO.output(13, GPIO.HIGH)
+        GPIO.output(5, GPIO.HIGH)
+    elif (diff >= 0.039):
+        print('weak earthquake')
+        GPIO.output(13, GPIO.HIGH)
+    else:
+        GPIO.output(13, GPIO.LOW)
+        GPIO.output(5, GPIO.LOW)
+
+    #database structure of temp and humid
+	#mycursor.execute("CREATE TABLE shock(id INT(4), datetime1 DATETIME, ax FLOAT(5,3), ay FLOAT(5,3), az FLOAT(5,3), ar FLOAT(5,3))")
+
+    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    sql = "INSERT INTO shock(id, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
+	sensor_id=001
+	val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
+	mycursor.execute(sql, val)
+	mydb.commit()
         
-        #Full scale range +/- 250 degree/C as per sensitivity scale factor
-        Ax = acc_x/16384.0
-        Ay = acc_y/16384.0
-        Az = acc_z/16384.0
-
-        Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
-
-        diff = math.fabs(1.025 - Ar)
-
-        if (diff >= 0.092 ):
-            print('strong earthquake')
-            GPIO.output(13, GPIO.HIGH)
-            GPIO.output(5, GPIO.HIGH)
-
-        elif (diff >= 0.039):
-            print('weak earthquake')
-            GPIO.output(13, GPIO.HIGH)
-        else
-            GPIO.output(13, GPIO.LOW)
-            GPIO.output(5, GPIO.LOW)
-            
-        print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g" %Az) 	
-        sleep(0.2)
+    print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g" %Az)

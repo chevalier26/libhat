@@ -51,9 +51,9 @@ def readtemphumid():
 		humid_dht11, temp_dht11 = Adafruit_DHT.read_retry(sensor, gpio)
 		
 	humid=humid_dht11
-	temp=temp_dht11
-	print humid
-	print temp
+	temp=read_temp()
+	#print humid
+	#print temp
 	#-----------------------------------------------------------------------------------------------------#
 
 
@@ -64,7 +64,7 @@ def readtemphumid():
 	  passwd="raspberry",
 	  database="libhat"
 	)
-	print "connected"
+	#print "connected"
 	mycursor = mydb.cursor()
 
 	#database structure of temp and humid
@@ -76,9 +76,9 @@ def readtemphumid():
 	sql = "INSERT INTO temp_humid(datetime1, temp, humid, sensor_id) VALUES (%s,%s,%s,%s)"
 	sensor_id=001
 	val = (current_datetime, temp, humid, sensor_id)
-	print val;
-	print sql;
+	#print val;
+	#print sql;
 	mycursor.execute(sql, val)
 
 	mydb.commit()
-	print(mycursor.rowcount, "record inserted")
+	#print(mycursor.rowcount, "record inserted")

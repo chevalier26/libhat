@@ -4,6 +4,7 @@ def seismometer():
     import RPi.GPIO as GPIO
     import mysql.connector
     import datetime
+    import math
 
     #some MPU6050 Registers and their Address
     PWR_MGMT_1   = 0x6B

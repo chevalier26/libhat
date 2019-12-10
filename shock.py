@@ -22,7 +22,7 @@ def seismometer():
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(13, GPIO.OUT)
-    GPIO.setup(5, GPIO.OUT)
+    GPIO.setup(6, GPIO.OUT)
 
 
     def MPU_Init():
@@ -61,14 +61,14 @@ def seismometer():
     MPU_Init()
 
     #connecting the database
-	mydb = mysql.connector.connect(
+    mydb = mysql.connector.connect(
 	  host="localhost",
 	  user="pi",
 	  passwd="raspberry",
 	  database="libhat"
-	)
-	print "connected"
-	mycursor = mydb.cursor()
+    )
+    print "connected"
+    mycursor = mydb.cursor()
 
    
 
@@ -82,21 +82,21 @@ def seismometer():
     acc_z = read_raw_data(ACCEL_ZOUT_H)
     
     #Full scale range +/- 250 degree/C as per sensitivity scale factor
-    Ax = acc_x/16384.0
-    Ay = acc_y/16384.0
-    Az = acc_z/16384.0
+    Ax = (acc_x/16384.0)-0.06842
+    Ay = (acc_y/16384.0)-0.06442
+    Az = (acc_z/16384.0)-1.02117
     Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
     diff = math.fabs(1.025 - Ar)
     if (diff >= 0.092 ):
         print('strong earthquake')
         GPIO.output(13, GPIO.HIGH)
-        GPIO.output(5, GPIO.HIGH)
+        GPIO.output(6, GPIO.HIGH)
     elif (diff >= 0.039):
         print('weak earthquake')
         GPIO.output(13, GPIO.HIGH)
     else:
         GPIO.output(13, GPIO.LOW)
-        GPIO.output(5, GPIO.LOW)
+        GPIO.output(6, GPIO.LOW)
 
     #database structure of temp and humid
 	#mycursor.execute("CREATE TABLE shock(id INT(4), datetime1 DATETIME, ax FLOAT(5,3), ay FLOAT(5,3), az FLOAT(5,3), ar FLOAT(5,3))")

@@ -15,13 +15,13 @@ print user_counter
 
 while True:
 	i=GPIO.input(18)
-if i==0:                 #When output from motion sensor is LOW
-	print "No intruders",i
-	print user_counter
-	time.sleep(0.5)
-
-elif i==1:               #When output from motion sensor is HIGH
-	print "Intruder detected",i
-	user_counter+=1
-	print user_counter
-	time.sleep(0.5)
+	if i==0:                 #When output from motion sensor is LOW
+		print "No intruders",i
+		print user_counter
+		time.sleep(0.5)
+	
+	elif i==1:               #When output from motion sensor is HIGH
+		print "Intruder detected",i
+		user_counter+=1
+		print user_counter
+		time.sleep(0.5)

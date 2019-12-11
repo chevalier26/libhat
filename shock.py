@@ -69,12 +69,7 @@ def seismometer():
 	  passwd="raspberry",
 	  database="libhat"
 	)
-    print "connected"
     mycursor = mydb.cursor()
-
-   
-
-    print (" Reading Data of Gyroscope and Accelerometer")
 
         
     #Read Accelerometer raw value

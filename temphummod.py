@@ -11,6 +11,10 @@ def readtemphumid():
 	os.system('modprobe w1-gpio')  # Turns on the GPIO module
 	os.system('modprobe w1-therm') # Turns on the Temperature module
 	gpio=17
+	
+	RPi.GPIO.setmode(GPIO.BCM)
+	RPi.GPIO.setup(26, GPIO.OUT)
+    	RPi.GPIO.setup(6, GPIO.OUT)
 
 	# Finds the correct device file that holds the temperature data
 	base_dir = '/sys/bus/w1/devices/'
@@ -53,10 +57,20 @@ def readtemphumid():
 		
 	humid=humid_dht11
 	temp=read_temp()
+	
 	#print humid
 	#print temp
 	#-----------------------------------------------------------------------------------------------------#
-
+	
+	
+	if (humid > 60 and humid < 35 or temp > 23 and temp < 13):
+        	print('abnormal temperature and/or humidity')
+        	GPIO.output(26, GPIO.HIGH)
+        	GPIO.output(6, GPIO.HIGH)
+    	else:
+        	GPIO.output(26, GPIO.LOW)
+        	GPIO.output(6, GPIO.LOW)
+	
 
 	#connecting the database
 	mydb = mysql.connector.connect(

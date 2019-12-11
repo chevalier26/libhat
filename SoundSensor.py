@@ -1,4 +1,6 @@
+import threading
 def read_sound():
+    threading.Timer(10, read_sound).start()
     # Import SPI library (for hardware SPI) and MCP3008 library.
     import Adafruit_GPIO.SPI as SPI
     import Adafruit_MCP3008

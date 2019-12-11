@@ -8,6 +8,9 @@ def read_light():
     import glob
     import time
     import datetime
+ 
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(13, GPIO.OUT)
 
     # Software SPI configuration:
     # CLK  = 18

@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import mysql.connector
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)

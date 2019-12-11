@@ -9,7 +9,7 @@ from threading import Thread
 
 readtemphumid()
 seismometer()
-userCount()
-read_sound()
+#userCount()
+#read_sound()
 light = threading.Thread(target=read_light, args=())
 light.start()

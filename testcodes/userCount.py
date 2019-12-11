@@ -12,8 +12,8 @@ global delayChecker
 delayChecker = 0
 user_counter = 0
 
-print "Start sequence"
-print user_counter
+print "START SEQUENCE"
+time.sleep(5)
 
 while True:
 	i=GPIO.input(18)

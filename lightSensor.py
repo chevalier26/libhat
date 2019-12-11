@@ -59,18 +59,18 @@ def read_light():
 	    print "Light level is low\n"
             while light > lightTrigger:
                 light = mcp.read_adc(2)
-                #GPIO.output(13, GPIO.HIGH)
+                GPIO.output(13, GPIO.HIGH)
                 time.sleep(2)
-                #GPIO.output(13, GPIO.LOW)
+                GPIO.output(13, GPIO.LOW)
 	    print "Light level back to ambient level\n"
 	#Trigger if light level is too high
 	if light < lightTriggerHigh:
 	     print "Light level is too high\n"
 	     while light < lightTriggerHigh:
 		light = mcp.read_adc(2)
-		#GPIO.output(13, GPIO.HIGH)
+		GPIO.output(13, GPIO.HIGH)
                 time.sleep(2)
-                #GPIO.output(13, GPIO.LOW)
+                GPIO.output(13, GPIO.LOW)
 	     print "Light level back to ambient level\n"
         #convert light to string for the sql query //i'm not sure if this is really needed
         slight = str(light)

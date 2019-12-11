@@ -1,4 +1,6 @@
+import threading
 def seismometer():
+    threading.Timer(0.5, readtemphumid).start()
     import smbus			#import SMBus module of I2C
     import time          #import
     import RPi.GPIO as GPIO

@@ -31,5 +31,5 @@ while True:
 		while i==1:
 			i=GPIO.input(18)
 			delayChecker+=1
-			print "[Delay: ",delayChecker,"]", "\n"
+			print "[Delay:",delayChecker,"]", i, "\n"
 			time.sleep(1)	

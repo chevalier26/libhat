@@ -70,3 +70,4 @@ def read_light():
         print(mycursor.rowcount, "Data Recorded")
         # Wait for 10 mins to measure light level again.
         time.sleep(600)
+read_light()

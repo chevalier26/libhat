@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(
 	  passwd="raspberry",
 	  database="libhat"
 	)
-	print "connected"
+print "connected"
 	mycursor = mydb.cursor()
 
 	#database structure of temp and humid

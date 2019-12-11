@@ -3,7 +3,7 @@ def read_light():
     import Adafruit_GPIO.SPI as SPI
     import Adafruit_MCP3008
     import mysql.connector
-    import RPi.GPIO
+    import RPi.GPIO as GPIO
     import os
     import glob
     import time

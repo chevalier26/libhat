@@ -83,6 +83,7 @@ def readtemphumid():
 		else:
 			GPIO.output(26, GPIO.LOW)
 			GPIO.output(6, GPIO.LOW)
+	alert(humid, temp)
 	
 
 	#connecting the database

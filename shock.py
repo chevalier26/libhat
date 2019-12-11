@@ -109,3 +109,4 @@ def seismometer():
 	mydb.commit()
         
     	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
+	time.sleep(0.01)

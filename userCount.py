@@ -43,7 +43,7 @@ def userCount():
 			print "Intruder detected (",i,")"
 			user_counter+=1
 			print "People: ", user_counter, "\n"
-			time.sleep(1)
+			time.sleep(3)
 
 			current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 

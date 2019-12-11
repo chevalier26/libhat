@@ -1,5 +1,6 @@
+import threading
 def readtemphumid():
-
+	threading.Timer(3600.0, readtemphumid).start()
 	import mysql.connector
 	import RPi.GPIO
 	import Adafruit_DHT

@@ -63,7 +63,7 @@ def readtemphumid():
 	#-----------------------------------------------------------------------------------------------------#
 	
 	
-	if (humid > 60 and humid < 35 or temp > 23 and temp < 13):
+	if ((humid > 60 and humid < 35) or (temp > 23 and temp < 13)):
         	print('abnormal temperature and/or humidity')
         	GPIO.output(26, GPIO.HIGH)
         	GPIO.output(6, GPIO.HIGH)

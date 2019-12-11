@@ -32,7 +32,16 @@ def read_light():
     mycursor = mydb.cursor()
 
     #database structure of light sensor
-	#mycursor.execute("CREATE TABLE light_sensor(id INT(4), datetime1 DATETIME, light_level INT(4), sensor_id)")
+    #mycursor.execute("CREATE TABLE light_sensor(id INT(4), datetime1 DATETIME, light_level INT(4), sensor_id)")
+    x = 0
+    #calibrating
+    print "Please put sensor on ambient light to calibrate, after 5 seconds the current light level will be set to ambient"
+    while x != 5:
+        x += 1
+        time.sleep(1)
+    ambientLight = mcp.read_adc(2)
+    print ("Ambient light level set to: ", ambientLight)
+    lightTrigger = ambientLight + 200
 
     sql = "INSERT INTO light_sensor(datetime1, light_level, sensor_id) VALUES (%s,%s,%s)"
     sensor_id = 001
@@ -41,6 +50,14 @@ def read_light():
         # The read_adc function will get the value of the specified channel (2).
         light = mcp.read_adc(2)
         print(light)
+	#Trigger if light level is low
+	if light > lightTrigger:
+            while light > lightTrigger:
+                light = mcp.read_adc(2)
+                print "Light level is low\n"
+                GPIO.output(13, GPIO.HIGH)
+                time.sleep(0.5)
+                GPIO.output(13, GPIO.LOW)
         #convert light to string for the sql query //i'm not sure if this is really needed
         slight = str(light)
         #variable for datetime

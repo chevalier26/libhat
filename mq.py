@@ -25,7 +25,7 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 class MQ():
 
     ######################### Hardware Related Macros #########################
-    MQ_PIN                       = 0        # define which analog input channel you are going to use (MCP3008)
+    MQ_PIN                       = 5        # define which analog input channel you are going to use (MCP3008)
     RL_VALUE                     = 5        # define the load resistance on the board, in kilo ohms
     RO_CLEAN_AIR_FACTOR          = 9.83     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet

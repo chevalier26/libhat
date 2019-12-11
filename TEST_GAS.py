@@ -3,7 +3,7 @@ import sys, time
 import datetime
 
 #connecting the database
-	mydb = mysql.connector.connect(
+mydb = mysql.connector.connect(
 	  host="localhost",
 	  user="pi",
 	  passwd="raspberry",

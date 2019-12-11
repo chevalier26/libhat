@@ -69,5 +69,5 @@ def read_light():
         mydb.commit()
         print(mycursor.rowcount, "Data Recorded")
         # Wait for 10 mins to measure light level again.
-        time.sleep(600)
+        time.sleep(5)
 read_light()

@@ -1,6 +1,7 @@
 from mq import *
 import sys, time
 import datetime
+import mysql.connector
 
 #connecting the database
 mydb = mysql.connector.connect(

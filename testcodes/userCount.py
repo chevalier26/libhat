@@ -23,12 +23,12 @@ while True:
 		time.sleep(1)
 		delayChecker = 0
 
-	elif i==1:               #When output from motion sensor is HIGH
+	elif i==1:             #When output from motion sensor is HIGH
 		print "Intruder detected, (",i,")"
 		user_counter+=1
 		print "People: ", user_counter,# "\n"
 		time.sleep(2)
-		while i==1	
+		while i==1:	
 			delayChecker+=1
 			print "[Delay: ",delayChecker,"]", "\n"
-			time.sleep(1)
+			time.sleep(1)	

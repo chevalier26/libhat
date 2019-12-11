@@ -1,6 +1,6 @@
 def seismometer():
     import smbus			#import SMBus module of I2C
-    from time import sleep          #import
+    import time          #import
     import RPi.GPIO as GPIO
     import mysql.connector
     import datetime
@@ -82,15 +82,16 @@ def seismometer():
     	acc_z = read_raw_data(ACCEL_ZOUT_H)
     
     #Full scale range +/- 250 degree/C as per sensitivity scale factor
-    	Ax = (acc_x/16384.0)-0.06842
-    	Ay = (acc_y/16384.0)-0.06442
-    	Az = (acc_z/16384.0)-1.02117
+    	Ax = (acc_x/16384.0)
+    	Ay = (acc_y/16384.0)
+    	Az = (acc_z/16384.0)
     	Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
-    	if (Ar >= 0.092 ):
+	diff = abs(Ar - 1.026)
+    	if (diff >= 0.092 ):
         	print('strong earthquake')
         	GPIO.output(13, GPIO.HIGH)
         	GPIO.output(6, GPIO.HIGH)
-    	elif (Ar >= 0.039):
+    	elif (diff >= 0.039):
         	print('weak earthquake')
         	GPIO.output(13, GPIO.HIGH)
     	else:

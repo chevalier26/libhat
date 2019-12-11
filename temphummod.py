@@ -62,14 +62,19 @@ def readtemphumid():
 	#print temp
 	#-----------------------------------------------------------------------------------------------------#
 	
-	
-	if ((humid > 60 and humid < 35) or (temp > 23 and temp < 13)):
-        	print('abnormal temperature and/or humidity')
-        	GPIO.output(26, GPIO.HIGH)
-        	GPIO.output(6, GPIO.HIGH)
-    	else:
-        	GPIO.output(26, GPIO.LOW)
-        	GPIO.output(6, GPIO.LOW)
+	def alert(humid, temp):
+		if ((humid > 60 and humid < 35) or (temp > 23 and temp < 13)):
+			print('ABNORMAL temperature and/or humidity detected!!!')
+			GPIO.output(26, GPIO.HIGH)
+			GPIO.output(6, GPIO.HIGH)
+			
+			humid, temp_dht11 = Adafruit_DHT.read_retry(sensor, gpio)
+			temp=read_temp()
+			
+			threading.Timer(10.0, alert(humid, temp)).start()
+		else:
+			GPIO.output(26, GPIO.LOW)
+			GPIO.output(6, GPIO.LOW)
 	
 
 	#connecting the database

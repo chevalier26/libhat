@@ -44,7 +44,7 @@ def read_light():
         time.sleep(1)
     ambientLight = mcp.read_adc(2)
     print ("Ambient light level set to: ", ambientLight)
-    lightTrigger = ambientLight + 200
+    lightTrigger = ambientLight + 150
 
     sql = "INSERT INTO light_sensor(datetime1, light_level, sensor_id) VALUES (%s,%s,%s)"
     sensor_id = 001

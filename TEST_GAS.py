@@ -18,7 +18,7 @@ mycursor = mydb.cursor()
 current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 sql = "INSERT INTO gas_sensor(datetime1, GAS_LPG, CO, SMOKE, sensor_id) VALUES (%s, %s, %s, %s, %s)"
-	sensor_id=001
+sensor_id=001
 
 
 print("Press CTRL+C to abort.")

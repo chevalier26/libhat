@@ -76,40 +76,37 @@ def seismometer():
 
     print (" Reading Data of Gyroscope and Accelerometer")
 
-    while True:
         
     #Read Accelerometer raw value
-    	acc_x = read_raw_data(ACCEL_XOUT_H)
-    	acc_y = read_raw_data(ACCEL_YOUT_H)
-    	acc_z = read_raw_data(ACCEL_ZOUT_H)
+    acc_x = read_raw_data(ACCEL_XOUT_H)
+    acc_y = read_raw_data(ACCEL_YOUT_H)
+    acc_z = read_raw_data(ACCEL_ZOUT_H)
     
     #Full scale range +/- 250 degree/C as per sensitivity scale factor
-    	Ax = (acc_x/16384.0)
-    	Ay = (acc_y/16384.0)
-    	Az = (acc_z/16384.0)
-    	Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
-	diff = abs(Ar - 1.026)
-    	if (diff >= 0.092 ):
-        	print('strong earthquake')
-		print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
-        	GPIO.output(13, GPIO.HIGH)
-        	GPIO.output(6, GPIO.HIGH)
-    	elif (diff >= 0.039):
-        	print('weak earthquake')
-		print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
-        	GPIO.output(13, GPIO.HIGH)
-    	else:
-        	GPIO.output(13, GPIO.LOW)
-        	GPIO.output(6, GPIO.LOW)
+    Ax = (acc_x/16384.0)
+    Ay = (acc_y/16384.0)
+    Az = (acc_z/16384.0)
+    Ar = math.sqrt(math.pow(Ax,2) + math.pow(Ay,2) + math.pow(Az,2))
+    diff = abs(Ar - 1.026)
+    if (diff >= 0.092 ):
+        print('strong earthquake')
+	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
+        GPIO.output(13, GPIO.HIGH)
+        GPIO.output(6, GPIO.HIGH)
+    elif (diff >= 0.039):
+        print('weak earthquake')
+	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
+        GPIO.output(13, GPIO.HIGH)
+    else:
+        GPIO.output(13, GPIO.LOW)
+        GPIO.output(6, GPIO.LOW)
 
     #database structure of temp and humid
 	#mycursor.execute("CREATE TABLE shock(id INT(4), datetime1 DATETIME, ax FLOAT(5,3), ay FLOAT(5,3), az FLOAT(5,3), ar FLOAT(5,3))")
 
-    	current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    	sql = "INSERT INTO idshock(sensorid, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
-	sensor_id=001
-	val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
-	mycursor.execute(sql, val)
-	mydb.commit()
-       
-	time.sleep(0.01)
+    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    sql = "INSERT INTO idshock(sensorid, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
+    sensor_id=001
+    val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
+    mycursor.execute(sql, val)
+    mydb.commit()

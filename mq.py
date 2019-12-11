@@ -46,7 +46,7 @@ class MQ():
     GAS_CO                       = 1
     GAS_SMOKE                    = 2
 
-    def __init__(self, Ro=10, analogPin=0):
+    def __init__(self, Ro=10, analogPin=5):
         self.Ro = Ro
         self.MQ_PIN = analogPin
         self.adc = mcp.read_adc(5)          # adc value from Channel 5 - MQ2 Combustible Gas

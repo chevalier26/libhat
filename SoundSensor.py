@@ -1,6 +1,6 @@
 import threading
 def read_sound():
-    threading.Timer(10, read_sound).start()
+    threading.Timer(0.2, read_sound).start()
     # Import SPI library (for hardware SPI) and MCP3008 library.
     import Adafruit_GPIO.SPI as SPI
     import Adafruit_MCP3008
@@ -51,4 +51,3 @@ def read_sound():
         mydb.commit()
         print(mycursor.rowcount, "Data Recorded")
         # Wait for 10 seconds to measure sound level again.
-        time.sleep(10)

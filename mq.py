@@ -114,11 +114,11 @@ class MQ():
     #          by changing the definition of the macros.
     ############################################################################ 
     
-    def MQRead(self, mq_pin):
+    def MQRead(self, MQ_PIN):
         rs = 0.0
 
         for i in range(self.READ_SAMPLE_TIMES):
-            rs += self.MQResistanceCalculation(self.adc.read(mq_pin))
+            rs += self.MQResistanceCalculation(self.adc.read(MQ_PIN))
             time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
 
         rs = rs/self.READ_SAMPLE_TIMES

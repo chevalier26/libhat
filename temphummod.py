@@ -12,9 +12,9 @@ def readtemphumid():
 	os.system('modprobe w1-therm') # Turns on the Temperature module
 	gpio=17
 	
-	RPi.GPIO.setmode(GPIO.BCM)
-	RPi.GPIO.setup(26, GPIO.OUT)
-    	RPi.GPIO.setup(6, GPIO.OUT)
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(26, GPIO.OUT)
+    	GPIO.setup(6, GPIO.OUT)
 
 	# Finds the correct device file that holds the temperature data
 	base_dir = '/sys/bus/w1/devices/'

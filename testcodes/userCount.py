@@ -28,7 +28,8 @@ while True:
 		user_counter+=1
 		print "People: ", user_counter,# "\n"
 		time.sleep(2)
-		while i==1:	
+		while i==1:
+			i=GPIO.input(18)
 			delayChecker+=1
 			print "[Delay: ",delayChecker,"]", "\n"
 			time.sleep(1)	

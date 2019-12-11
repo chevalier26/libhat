@@ -10,22 +10,21 @@ mydb = mysql.connector.connect(
 	  database="libhat"
 	)
 print "connected"
-	mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 
 	#database structure of temp and humid
 	#mycursor.execute("CREATE TABLE temp_humid(id INT(5), time1 DATETIME, LPG INT(5), CO INT(5), smoke INT(5))")
 
-	current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-	sql = "INSERT INTO gas_sensor(datetime1, GAS_LPG, CO, SMOKE, sensor_id) VALUES (%s, %s, %s, %s, %s)"
+sql = "INSERT INTO gas_sensor(datetime1, GAS_LPG, CO, SMOKE, sensor_id) VALUES (%s, %s, %s, %s, %s)"
 	sensor_id=001
 
 
-
-    print("Press CTRL+C to abort.")
+print("Press CTRL+C to abort.")
     
-    mq = MQ();
-    while True:
+mq = MQ();
+while True:
 
     	
         #perc = mq.MQPercentage()

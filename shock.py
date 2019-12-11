@@ -1,6 +1,6 @@
 import threading
 def seismometer():
-    threading.Timer(0.5, readtemphumid).start()
+    threading.Timer(0.5, seismometer).start()
     import smbus			#import SMBus module of I2C
     import time          #import
     import RPi.GPIO as GPIO
@@ -91,10 +91,12 @@ def seismometer():
 	diff = abs(Ar - 1.026)
     	if (diff >= 0.092 ):
         	print('strong earthquake')
+		print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
         	GPIO.output(13, GPIO.HIGH)
         	GPIO.output(6, GPIO.HIGH)
     	elif (diff >= 0.039):
         	print('weak earthquake')
+		print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
         	GPIO.output(13, GPIO.HIGH)
     	else:
         	GPIO.output(13, GPIO.LOW)
@@ -109,6 +111,5 @@ def seismometer():
 	val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
 	mycursor.execute(sql, val)
 	mydb.commit()
-        
-    	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
+       
 	time.sleep(0.01)

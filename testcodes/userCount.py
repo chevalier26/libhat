@@ -8,7 +8,7 @@ GPIO.setup(18, GPIO.IN)         #Read output from PIR motion sensor
 
 
 global user_counter
-global delayChecker
+#global delayChecker
 
 delayChecker = 0
 user_counter = 0
@@ -36,13 +36,13 @@ while True:
 		print "No intruders, (",i,")"
 		print "People: ", user_counter, "\n"
 		time.sleep(1)
-		delayChecker = 0
+		#delayChecker = 0
 
 	elif i==1:               #When output from motion sensor is HIGH
 		print "Intruder detected (",i,")"
 		user_counter+=1
 		print "People: ", user_counter, "\n"
-		time.sleep(2)
+		time.sleep(1)
 
 		current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -55,8 +55,8 @@ while True:
 
 		print "Data transferred"
 
-		while i==1:
-			i=GPIO.input(18)
-			delayChecker+=1
-			print "[Delay:", delayChecker,"]", "(", i, ")", "\n"
-			time.sleep(1)
+		#while i==1:
+		#	i=GPIO.input(18)
+		#	delayChecker+=1
+		#	print "[Delay:", delayChecker,"]", "(", i, ")", "\n"
+		#	time.sleep(1)

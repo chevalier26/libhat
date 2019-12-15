@@ -56,6 +56,8 @@ def read_sound():
 	#Trigger if sound level is too high
 	if sound < soundTrigger:
 	     print "Sound level is too high\n"
+	#I assume this means I'm committing only the moment I trigger the sound instead of every time I issue it
+	     mydb.commit()
 	     while sound < soundTriggerHigh:
 		sound = mcp.read_adc(7)
 		GPIO.output(13, GPIO.HIGH)
@@ -70,6 +72,5 @@ def read_sound():
         val = (current_datetime, ssound, sensor_id)
         #insert sound value into database with datetime
         mycursor.execute(sql, val)
-        mydb.commit()
-        print(mycursor.rowcount, "Data Recorded")
+        //print(mycursor.rowcount, "Data Recorded")
 read_sound()

@@ -64,6 +64,8 @@ def read_sound():
                 time.sleep(2)
                 GPIO.output(13, GPIO.LOW)
 	     print "Sound level back to ambient level\n"
+	#Stops infinite while statement to not takeover monitor.py
+		break
         #this is based from the lightSensor.py file so
         ssound = str(sound)
         #variable for datetime

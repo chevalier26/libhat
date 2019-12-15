@@ -11,7 +11,7 @@ def read_sound():
  
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(13, GPIO.OUT)
-
+	
     # Software SPI configuration:
     # CLK  = 18
     # MISO = 23

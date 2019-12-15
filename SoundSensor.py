@@ -1,12 +1,16 @@
-import threading
 def read_sound():
-    threading.Timer(0.2, read_sound).start()
     # Import SPI library (for hardware SPI) and MCP3008 library.
     import Adafruit_GPIO.SPI as SPI
     import Adafruit_MCP3008
-
+    import mysql.connector
+    import RPi.GPIO as GPIO
+    import os
+    import glob
     import time
     import datetime
+ 
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(13, GPIO.OUT)
 
     # Software SPI configuration:
     # CLK  = 18
@@ -30,17 +34,35 @@ def read_sound():
     print "connected"
     mycursor = mydb.cursor()
 
-    #database structure of sound sensor
-	#mycursor.execute("CREATE TABLE sound_sensor(id INT(4), datetime1 DATETIME, sound_level INT(4), sensor_id)")
+    #sound database
+    #mycursor.execute("CREATE TABLE sound_sensor(id INT(4), datetime1 DATETIME, sound_level INT(4), sensor_id)")
+    x = 0
+    #calibrating
+    print "Calibrating ambient noise. Wait 5 seconds"
+    while x != 5:
+        x += 1
+        time.sleep(1)
+    ambientSound = mcp.read_adc(7)
+    print ("Ambient Sound  set to: ", ambientSound)
+    soundTrigger = ambientSound + 150
 
     sql = "INSERT INTO sound_sensor(datetime1, sound_level, sensor_id) VALUES (%s,%s,%s)"
     sensor_id = 001
     # Main program loop.
     while True:
-        # The read_adc function will get the value of the specified channel (2).
+        # The read_adc function will get the value of the specified channel (7).
         sound = mcp.read_adc(7)
         print(sound)
-        #convert sound to string for the sql query //i'm not sure if this is really needed
+	#Trigger if sound level is too high
+	if sound < soundTrigger:
+	     print "Sound level is too high\n"
+	     while sound < soundTriggerHigh:
+		sound = mcp.read_adc(7)
+		GPIO.output(13, GPIO.HIGH)
+                time.sleep(2)
+                GPIO.output(13, GPIO.LOW)
+	     print "Sound level back to ambient level\n"
+        #this is based from the lightSensor.py file so
         ssound = str(sound)
         #variable for datetime
         current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -50,4 +72,4 @@ def read_sound():
         mycursor.execute(sql, val)
         mydb.commit()
         print(mycursor.rowcount, "Data Recorded")
-        # Wait for 10 seconds to measure sound level again.
+read_sound()

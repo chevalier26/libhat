@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Heebo:100&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" href="logo.png">
+		<script type="text/javascript">
+			(function titleScroller(text){document.title = text;console.log(text);setTimeout(function () {titleScroller(text.substr(1) + text.substr(0, 1));}, 500);}("Sound Level Monitor // "));
+		</script>
+		<style>
+			body{
+				padding:20px;
+			}
+			h1{
+				font-size:48px;
+				margin:0;
+				font-family: 'Heebo', sans-serif;;
+				color:#646464;
+				font-weight:100;
+				text-align:center;	
+				transition: all 300ms;
+			}
+			.chart-container {
+				margin: auto;
+				width: 1200px;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Sound Sensor</h1><br/>
+		<div class="chart-container">
+			<canvas id="mycanvas"></canvas>
+		</div>
+		
+		<!-- javascript -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/Chart.min.js"></script>
+		<script type="text/javascript" src="js/graph_soundSensor.js"></script>
+	</body>
+</html>

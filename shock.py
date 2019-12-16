@@ -88,20 +88,25 @@ def seismometer():
 	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
         GPIO.output(13, GPIO.HIGH)
         GPIO.output(6, GPIO.HIGH)
+        current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sensor_id=001
+        sql = "INSERT INTO idshock(sensorid, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)
+        val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
+        mycursor.execute(sql, val)
+        mydb.commit()
     elif (diff >= 0.039):
         print('weak earthquake')
 	print ( "Ax=%.3f g | " %Ax + "Ay=%.3f g | " %Ay + "Az=%.3f g | " %Az + "Ar=%.3f g" %Ar)
         GPIO.output(13, GPIO.HIGH)
+        current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sensor_id=001
+        sql = "INSERT INTO idshock(sensorid, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
+        val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
+        mycursor.execute(sql, val)
+        mydb.commit()
     else:
         GPIO.output(13, GPIO.LOW)
         GPIO.output(6, GPIO.LOW)
 
     #database structure of temp and humid
 	#mycursor.execute("CREATE TABLE shock(id INT(4), datetime1 DATETIME, ax FLOAT(5,3), ay FLOAT(5,3), az FLOAT(5,3), ar FLOAT(5,3))")
-
-    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    sql = "INSERT INTO idshock(sensorid, datetime1, ax, ay, az, ar) VALUES (%s,%s,%s,%s,%s,%s)"
-    sensor_id=001
-    val = (sensor_id, current_datetime, Ax, Ay, Az, Ar)
-    mycursor.execute(sql, val)
-    mydb.commit()
